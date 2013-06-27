@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html id="ie8" dir="ltr" lang="en-US">
+<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">   
+        <link rel="stylesheet" href="css/hex_xor.css">
+    </head>
+    <body>
+
+	    <div id="navbar" class="navbar navbar-fixed-top">
+	        <div class="navbar-inner">
+	            <div class="container">
+                    <button type="button" class="btn btn-navbar">
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			        </button>          
+	                <a class="brand" href="#">XOR-HEX</a>   
+	                <div class="nav-collapse collapse">
+			            <ul class="nav">
+			              	<li class="active"><a href="#">XOR-HEX</a></li>
+			              	<li><a href="cbc">CBC</a></li>
+			              	<li><a href="cbt">CBT</a></li>
+			            </ul>
+			         </div>             
+	            </div>
+	        </div>
+	    </div>  
+
+	    <div class="container hero-unit" style="margin-top: 80px;">
+	    	<div class="title">Hex Converter</div>
+	    	<div class="control-group">
+			    <label class="control-label" for="inputHex">Hex Code</label>
+			    <div class="controls">
+			      <input type="text" class="span12" id="inputHex" placeholder="Hex">
+			    </div>
+			</div>
+			<div class="control-group">
+			    <label class="control-label" for="inputAscii">ASCII Code</label>
+			    <div class="controls">
+			      <input type="text" class="span12" id="inputAscii" placeholder="Ascii">
+			    </div>
+			</div>
+			<a href="#" class="btn" id="atoh">Ascii to Hex</a>
+			<a href="#" class="btn" id="htoa">Hex to Ascii</a>
+	    </div>
+
+
+		<div class="container hero-unit">
+			<div class="title">String XOR</div>
+	    	<div class="control-group">
+			    <label class="control-label" for="xorStr1">String1(HEX)</label>
+			    <div class="controls">
+			      <input type="text" class="span12" id="xorStr1" >
+			    </div>
+			</div>
+			<div class="control-group">
+			    <label class="control-label" for="xorStr2">string2(HEX)</label>
+			    <div class="controls">
+			      <input type="text" class="span12" id="xorStr2">
+			    </div>
+			</div>
+			<div class="control-group">
+			    <label class="control-label" for="hexResult">Result(Hex)</label>
+			    <div class="controls">
+			      <input type="text" class="span12" id="hexResult">
+			    </div>
+			</div>
+			<div class="control-group">
+			    <label class="control-label" for="strResult">Result(string)</label>
+			    <div class="controls">
+			      <input type="text" class="span12" id="strResult">
+			    </div>
+			</div>
+		</div>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/lib/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="js/byte.js"></script>
+        <script src="js/hex_xor.js"></script>
+    </body>
+</html>
+

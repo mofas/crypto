@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html id="ie8" dir="ltr" lang="en-US">
+<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style> 
+        	.table{
+        		background: #fff;
+        	}
+        	.table th{
+        		text-align: center;
+        	}
+        	.table tr input{
+        		width: 96%;
+        		margin: 0;
+        	} 
+       	</style>
+    </head>
+    <body>
+
+	    <div id="navbar" class="navbar navbar-fixed-top">
+	        <div class="navbar-inner">
+	            <div class="container">
+                    <button type="button" class="btn btn-navbar">
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			        </button>          
+	                <a class="brand" href="#">XOR-HEX</a>   
+	                <div class="nav-collapse collapse">
+			            <ul class="nav">
+			              	<li><a href="#">XOR-HEX</a></li>
+			              	<li class="active"><a href="cbc">CBC</a></li>
+			              	<li><a href="cbt">CBT</a></li>
+			            </ul>
+			         </div>             
+	            </div>
+	        </div>
+	    </div> 
+
+	    <div class="container hero-unit" style="margin-top: 50px; text-align: center;">
+	    	<h3>CBC decrypt</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Key</th>
+						<th>Crypt text</th>                  
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="text" readonly value="140b41b22a29beb4061bda66b6747e14"></td>
+						<td><input type="text" readonly value="4ca00ff4c898d61e1edbf1800618fb2828a226d160dad07883d04e008a7897ee2e4b7465d5290d0c0e6c6822236e1daafb94ffe0c5da05d9476be028ad7c1d81"></td>                  
+					</tr>
+					<tr>
+						<td><input type="text" readonly value="140b41b22a29beb4061bda66b6747e14"></td>
+						<td><input type="text" readonly value="5b68629feb8606f9a6667670b75b38a5b4832d0f26e1ab7da33249de7d4afc48e713ac646ace36e872ad5fb8a512428a6e21364b0c374df45503473c5242a253"></td>                  
+					</tr>             
+				</tbody>
+            </table>
+
+	    	<div class="control-group">
+			    <label class="control-label" for="key">key</label>
+			    <div class="controls">
+			      <input type="text" class="span12" id="key" placeholder="key" value="140b41b22a29beb4061bda66b6747e14">
+			    </div>
+			</div>
+			<div class="control-group">
+			    <label class="control-label" for="ct">Ciphertext</label>
+			    <div class="controls">
+			      <input type="text" class="span12" id="ct" placeholder="ct" value="4ca00ff4c898d61e1edbf1800618fb2828a226d160dad07883d04e008a7897ee2e4b7465d5290d0c0e6c6822236e1daafb94ffe0c5da05d9476be028ad7c1d81">
+			    </div>
+			</div>
+			<h4 id="plainText"></h4>
+			<a href="#" class="btn" id="atoh">decrypt</a>			
+	    </div>
+
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/lib/jquery-1.9.1.min.js"><\/script>')</script>        
+        <script src="js/lib/sjcl.js"></script>        
+        <script src="js/byte.js"></script>        
+        <script src="js/cbc.js"></script>
+    </body>
+</html>
