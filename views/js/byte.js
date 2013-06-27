@@ -56,8 +56,7 @@ var byte = (function(o){
 		return hexString;
 	}
 
-	o.byteArrayXor = function(str1ByteArr , str2ByteArr){
-		console.log(str1ByteArr , str2ByteArr);
+	o.byteArrayXor = function(str1ByteArr , str2ByteArr){		
 		var resultArr = new Array();
 		var j = 0;
 		for (var i = 0; i < str1ByteArr.length ; i++){

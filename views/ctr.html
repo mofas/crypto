@@ -37,8 +37,8 @@
 	                <div class="nav-collapse collapse">
 			            <ul class="nav">
 			              	<li><a href="hex_xor.html">XOR-HEX</a></li>
-			              	<li class="active"><a href="cbc.html">CBC</a></li>
-			              	<li><a href="ctr.html">CTR</a></li>
+			              	<li><a href="cbc.html">CBC</a></li>
+			              	<li class="active"><a href="ctr.html">CTR</a></li>
 			            </ul>
 			         </div>             
 	            </div>
@@ -46,7 +46,7 @@
 	    </div> 
 
 	    <div class="container hero-unit" style="margin-top: 50px; text-align: center;">
-	    	<h3>CBC decrypt</h3>
+	    	<h3>CTR decrypt</h3>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -56,12 +56,12 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="text" readonly value="140b41b22a29beb4061bda66b6747e14"></td>
-						<td><input type="text" readonly value="4ca00ff4c898d61e1edbf1800618fb2828a226d160dad07883d04e008a7897ee2e4b7465d5290d0c0e6c6822236e1daafb94ffe0c5da05d9476be028ad7c1d81"></td>                  
+						<td><input type="text" readonly value="36f18357be4dbd77f050515c73fcf9f2"></td>
+						<td><input type="text" readonly value="69dda8455c7dd4254bf353b773304eec0ec7702330098ce7f7520d1cbbb20fc388d1b0adb5054dbd7370849dbf0b88d393f252e764f1f5f7ad97ef79d59ce29f5f51eeca32eabedd9afa9329"></td>                  
 					</tr>
 					<tr>
-						<td><input type="text" readonly value="140b41b22a29beb4061bda66b6747e14"></td>
-						<td><input type="text" readonly value="5b68629feb8606f9a6667670b75b38a5b4832d0f26e1ab7da33249de7d4afc48e713ac646ace36e872ad5fb8a512428a6e21364b0c374df45503473c5242a253"></td>                  
+						<td><input type="text" readonly value="36f18357be4dbd77f050515c73fcf9f2"></td>
+						<td><input type="text" readonly value="770b80259ec33beb2561358a9f2dc617e46218c0a53cbeca695ae45faa8952aa0e311bde9d4e01726d3184c34451"></td>
 					</tr>             
 				</tbody>
             </table>
@@ -69,13 +69,13 @@
 	    	<div class="control-group">
 			    <label class="control-label" for="key">key</label>
 			    <div class="controls">
-			      <input type="text" class="span12" id="key" placeholder="key" value="140b41b22a29beb4061bda66b6747e14">
+			      <input type="text" class="span12" id="key" placeholder="key" value="36f18357be4dbd77f050515c73fcf9f2">
 			    </div>
 			</div>
 			<div class="control-group">
 			    <label class="control-label" for="ct">Ciphertext</label>
 			    <div class="controls">
-			      <input type="text" class="span12" id="ct" placeholder="ct" value="4ca00ff4c898d61e1edbf1800618fb2828a226d160dad07883d04e008a7897ee2e4b7465d5290d0c0e6c6822236e1daafb94ffe0c5da05d9476be028ad7c1d81">
+			      <input type="text" class="span12" id="ct" placeholder="ct" value="770b80259ec33beb2561358a9f2dc617e46218c0a53cbeca695ae45faa8952aa0e311bde9d4e01726d3184c34451">
 			    </div>
 			</div>
 			<h4 id="plainText"></h4>
@@ -87,6 +87,6 @@
         <script>window.jQuery || document.write('<script src="js/lib/jquery-1.9.1.min.js"><\/script>')</script>        
         <script src="js/lib/sjcl.js"></script>        
         <script src="js/byte.js"></script>        
-        <script src="js/cbc.js"></script>
+        <script src="js/ctr.js"></script>
     </body>
 </html>

@@ -43,8 +43,7 @@ var CBCDecrypt = (function(o){
 		var aes = new sjcl.cipher.aes(key);
 		var pt = "",
 			cb,
-			preCb,
-			aes,
+			preCb,			
 			dc,
 			ptbArr,
 			ptb;
