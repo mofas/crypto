@@ -67,6 +67,13 @@ var byte = (function(o){
 		return resultArr;
 	}
 
+	o.HexStrXor = function(hexStr1 , hexStr2){
+		var str1ByteArr = byte.hexToByteArray(hexStr1);
+		var str2ByteArr = byte.hexToByteArray(hexStr2);
+		var resultArr = byte.byteArrayXor(str1ByteArr , str2ByteArr);
+		return byte.byteArrayToHex(resultArr)
+	}
+
 	return o;
 
 })( byte || {} );

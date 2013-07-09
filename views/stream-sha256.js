@@ -36,7 +36,7 @@ fs.open(filePath , 'r', function(status, fd) {
 
 
     var caculateHash = function(){  
-	    fileBuffer = new Buffer(range_end - range_start)
+	    fileBuffer = new Buffer(range_end - range_start);
 	    fs.read(fd, fileBuffer, 0, (range_end - range_start) , range_start , function(err, num) {	    	  	    	
 	    	range_end = range_start;
 			range_start -= block_size;	
