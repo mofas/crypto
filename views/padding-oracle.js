@@ -81,20 +81,26 @@ var ct = "f20bdba6ff29eed7b046d1df9fb7000058b1ffb4210a580f748b4ac714c001bd4a6104
 var pt = "";
 var block = [];
 for(var i = 0; i < ct.length ;i+=32){
-	block.push(ct.substring(i,i+32));
+	block.push(ct.substring(i,i+32));	
 }
 
+/** four block
+f20bdba6ff29eed7b046d1df9fb70000
+58b1ffb4210a580f748b4ac714c001bd
+4a61044426fb515dad3f21f18aa577c0
+bdf302936266926ff37dbf7035d5eeb4
+**/
 
 
 var isGoodPadding = function(query , successcallback , failcallback){
 	var request = http.get("http://crypto-class.appspot.com/po?er=" + query, function(res) {			
 		if(res.statusCode === 404){	
-			request.abort();					
-			setTimeout(successcallback, 1);
+			request.abort();	
+			successcallback();							
 		}
 		else{			
-			request.abort();
-			setTimeout(failcallback, 1);			
+			request.abort();				
+			failcallback();
 		}		
 	});		
 }
@@ -116,30 +122,35 @@ var guessWordGenegrator = function(){
 	return guessWordPool;
 }
 	
-// 1 => 01 , 2 => 0202 , 3 => 030303 ...... 16 => 0f0f0f0f0f0f0f0f0f0f
+// 1 => 01 , 2 => 0202 , 3 => 030303 ...... 15 => 0e0e0e0e0e0e0e0e0e 
 var paddingHexGenegrator = function(no){		
 	var paddingHex = "";
 	var HexChar = "0";
-	HexChar += hexCode[no%16];		
-	for(var i = no ; i > 0 ; i--){
-		paddingHex += HexChar;
-	}
-	while(paddingHex.length < 32){
-		paddingHex = "00" + paddingHex;
+	//notice:  16 => 10101010101010101010101010101010
+	if(no < 16){
+		HexChar += hexCode[no%16];
+			for(var i = no ; i > 0 ; i--){
+			paddingHex += HexChar;
+		}
+		while(paddingHex.length < 32){
+			paddingHex = "00" + paddingHex;
+		}
+	}	
+	else{
+		paddingHex = "10101010101010101010101010101010";
 	}
 	return paddingHex;
 }
 
 
 var decipherBlock = function(targetBlockNo){	
-	var decipherText = "6865204d6167696320576f72647320";
+	var decipherText = "";
 
 	var 
 		target = block[targetBlockNo],
 		XOR_CT = block[targetBlockNo-1],		
 		blockLength = XOR_CT.length/2,
-		//crackPosition = blockLength-1,
-		crackPosition = 1,
+		crackPosition = blockLength-1,				
 		paddingHex = "",
 		CT_XOR_Padding = "",
 		guessWordFormatText = "",
@@ -159,20 +170,19 @@ var decipherBlock = function(targetBlockNo){
 	var requestLoop = function(){
 		if(crackPosition >= 0){
 			//XOR padding 
-			paddingHex = paddingHexGenegrator(blockLength - crackPosition);		
-			CT_XOR_Padding = byte.HexStrXor(XOR_CT, paddingHex);
+			paddingHex = paddingHexGenegrator(blockLength - crackPosition);			
+			CT_XOR_Padding = byte.HexStrXor(XOR_CT, paddingHex);			
 
 			//XOR Guess Code			
 			guessWordFormatText = guesswordFormater(guessWordPool[guessWordIndex] , decipherText);			
 			CT_XOR_GUESSWORD = byte.HexStrXor(CT_XOR_Padding, guessWordFormatText);			
 			queryText = CT_XOR_GUESSWORD.toLowerCase() + target;
-			console.log("crackPosition: " + crackPosition , "guessWord: " + guessWordPool[guessWordIndex]);
-			console.log(CT_XOR_GUESSWORD.toLowerCase() + " " + target);
+			console.log("crackPosition: " + crackPosition , "guessWord: " + guessWordPool[guessWordIndex]);			
 			isGoodPadding(queryText , 
 				function(){
-					//success			
-					console.log("success!! Now the decipherText is : " + decipherText + "\n\n");	
+					//success								
 					decipherText = guessWordPool[guessWordIndex] + decipherText;
+					console.log("success!! Now the decipherText is : " + decipherText + "\n\n");	
 					crackPosition -= 1;
 					guessWordIndex = 0;
 					requestLoop();
@@ -180,13 +190,22 @@ var decipherBlock = function(targetBlockNo){
 				function(){
 					//fail
 					guessWordIndex += 1;
+					if(guessWordIndex > guessWordPool.length-1){
+						console.log("ERR OCCUR: No words fit");						
+						return;
+					}
 					requestLoop();
 				}
 			);
 		}
 		else{
-			console.log(decipherText);
-			pause;
+			var ptFrag = byte.byteArrayToString(byte.hexToByteArray(decipherText)); 			
+			pt += ptFrag;
+			console.log("\n"+ pt + "\n");
+			if(targetBlockNo+1 < block.length){
+				decipherBlock(targetBlockNo+1);	
+				console.log("The final answer:\n\n\n"+ pt + "\n\n\n");
+			}			
 		}
 	}
 	
