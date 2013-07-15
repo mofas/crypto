@@ -1,5 +1,10 @@
 
-
+/************************************************
+***  WARNING:
+***  It is very very very time comsuming.....
+***  node.js is not suitable for doing arithmetic operation
+***  so ,  it is just for fun.
+*************************************************/
 var bigInt  = require('BigInt');
 // mpdule https://npmjs.org/package/BigInt
 
