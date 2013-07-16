@@ -21,28 +21,43 @@ var pStr = "13407807929942597099574024998205846127479365820592393377723561443721
 	B = Math.pow(2,20);
 
 
+return;
+
 //console.log(bigInt.bigInt2str(bigInt.add(p , g) , 10));
+var perviousPow = bigInt.str2bigInt("1" , 10 , 0),
+	x1,
+	gi,
+	middleValue;
+
 console.log("create hash Table");
-for(var i = 0; i < B ; i++){		
-	var x1 = bigInt.str2bigInt(i.toString() , 10 , 0);	
-	var gi = bigInt.inverseMod(bigInt.powMod(g , x1 , p) , p);
+for(var i = 0; i < B ; i++){
+	//console.log(i , bigInt.bigInt2str(perviousPow , 10));
+	//x1 = bigInt.str2bigInt(i.toString() , 10 , 0);		
+	gi = bigInt.inverseMod(perviousPow , p);
+	//gi = bigInt.inverseMod(bigInt.powMod(g , x1 , p) , p);
 	//console.log(bigInt.bigInt2str(gi , 10));
-	var middleValue = bigInt.multMod(h,gi,p);		
+	middleValue = bigInt.multMod(h,gi,p);
 	hashTable[bigInt.bigInt2str(middleValue, 10)] = i;		
+	perviousPow = bigInt.multMod(perviousPow , g , p);
 	if( i % Math.pow(2,10) == 0 ){
 		console.log("bulid table : " + i);
 	}
 }
+
+
 console.log("finish create hash table\n");
 console.log("start search hash table");
 
-var bigInt_B = bigInt.str2bigInt(B.toString() , 10 , 0);
-var g_pow_B = bigInt.powMod(g , bigInt_B , p);
+var bigInt_B = bigInt.str2bigInt(B.toString() , 10 , 0),
+	g_pow_B = bigInt.powMod(g , bigInt_B , p);
 //console.log(bigInt.bigInt2str(g_pow_B , 10));
 
+
+perviousPow = bigInt.str2bigInt("1" , 10 , 0);
 for(var i = 0 ; i < B ; i++){
- 	var x0 = bigInt.str2bigInt(i.toString() , 10 , 0); 	
- 	var middleValue = bigInt.bigInt2str(bigInt.powMod(g_pow_B,x0,p), 10); 	 	
+ 	//var x0 = bigInt.str2bigInt(i.toString() , 10 , 0); 	
+ 	middleValue = bigInt.bigInt2str(perviousPow, 10);
+ 	//var middleValue = bigInt.bigInt2str(bigInt.powMod(g_pow_B,x0,p), 10); 		 
  	if(hashTable[middleValue] != null){
  		console.log("*******************************************************");
  		console.log("find answer:");
@@ -52,9 +67,10 @@ for(var i = 0 ; i < B ; i++){
  		console.log("*******************************************************");
  		return;
  	}
- 	if( i % Math.pow(2,10) == 0 ){
-		console.log("search table : " + i);
-	}
+ 	perviousPow = bigInt.multMod(perviousPow , g_pow_B , p);
+ 	// if( i % Math.pow(2,10) == 0 ){
+	// 	console.log("search table : " + i);
+	// }
 }
 
 // ans = 375374217830
